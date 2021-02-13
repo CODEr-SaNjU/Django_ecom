@@ -1,0 +1,8 @@
+.container-fluid {
+  padding: 60px;
+  margin: 60px;
+}
+
+* {
+  background-color: black;
+}
