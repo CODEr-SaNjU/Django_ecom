@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate
 from django.contrib import auth, messages
+from .models import Product, ProductType
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User, auth, Group
 # Create your views here.
@@ -13,7 +14,8 @@ def Dashboard(request):
 
 
 def HomePage(request):
-    return render(request, "custmer_html/main.htm")
+    AllProduct = Product.objects.all()
+    return render(request, "custmer_html/main.htm", {'AllProduct': AllProduct})
 
 
 def Login(request):

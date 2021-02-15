@@ -10,6 +10,12 @@
 
 <body>
     <h1>welcome here user </h1>
+    {% for i in AllProduct %}
+        <p>product name :: {{i.Product_Name}}</p> <br>
+        {{i.Product_Type}} <br>
+        {{i.Product_Price}} <br>
+        <hr>
+    {% endfor %}
 </body>
 
 </html>
