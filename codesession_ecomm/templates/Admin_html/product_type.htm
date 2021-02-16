@@ -1,0 +1,23 @@
+{% extends "Admin_html/main.htm" %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 ">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="row g-6">
+                    <div class="col">
+                        <input type="text" class="form-control" name="productType" placeholder="Product Type"
+                            aria-label="Product Type">
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-success text-uppercase">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock%}

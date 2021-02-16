@@ -1,0 +1,18 @@
+{% block content %}
+{% load static %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+           <a href="{% url 'AddProduct' %}"> <button class="btn btn-info">Add Product</button></a>
+        </div>
+        <div class="col-sm-6">
+            <a href="{% url 'AddProductType' %}"> <button class="btn btn-warning">Add Product Type </button></a>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock%}

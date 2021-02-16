@@ -33,3 +33,22 @@ def Login(request):
 
     else:
         return render(request, 'Admin_html/login.htm')
+
+
+def Add_Product(request):
+    return render(request, 'Admin_html/Add_product.htm')
+
+
+def Add_ProductType(request):
+    if request.method == "POST":
+        AddProductType = request.POST["productType"]
+
+        if ProductType.objects.filter(Product_type=AddProductType).exists():
+            return HttpResponse("data exists ")
+        else:
+            Productype = ProductType.objects.create(
+                Product_type=AddProductType)
+            Productype.save()
+            return HttpResponse("data done ")
+    else:
+        return render(request, 'Admin_html/product_type.htm')
