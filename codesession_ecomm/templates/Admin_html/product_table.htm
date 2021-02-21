@@ -1,0 +1,32 @@
+{% load static %}
+
+
+<table class="table table-dark table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Product Type</th>
+            <th scope="col">Product Price</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in AllProduct %}
+        <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{i.Product_Name}}</td>
+            <td>{{i.Product_Type}}</td>
+            <td>{{i.Product_Price}}</td>
+            <td>
+                <a href="{% url 'UpdateProduct' i.id %}"><button  class="btn btn-info">Edit</button></a>
+                <a href="{% url 'DeleteProduct' i.id %}"><button class="btn btn-danger">Delete</button></a>
+            </td>
+            {% empty %}
+            <tr>
+                <td colspan="13" class="text-center text-danger bg-warning">No Product Found</td>
+            </tr>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

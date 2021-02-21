@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.contrib.auth import authenticate
 from django.contrib import auth, messages
@@ -10,7 +10,8 @@ from .forms import ProductCreateForm
 
 @login_required(login_url='login')
 def Dashboard(request):
-    return render(request, "Admin_html/main.htm")
+    AllProduct = Product.objects.all()
+    return render(request, "Admin_html/main.htm", {'AllProduct': AllProduct})
 
 
 def HomePage(request):
@@ -37,7 +38,7 @@ def Login(request):
 
 def Add_Product(request):
     if request.method == "POST":
-        Productform = ProductCreateForm(data=request.POST)
+        Productform = ProductCreateForm(request.POST, request.FILES)
         if Productform.is_valid():
             product = Productform.save(commit=False)
             product.save()
@@ -62,3 +63,23 @@ def Add_ProductType(request):
             return HttpResponse("data done ")
     else:
         return render(request, 'Admin_html/product_type.htm')
+
+
+def Update_Product(request, id):
+    obj = get_object_or_404(Product, id=id)
+    print("line number 70 ", id)
+    form = ProductCreateForm(request.POST or None, request.FILES, instance=obj)
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+        form.save()
+        return redirect('dashboard')
+        Productform = ProductCreateForm()
+        return render(request, 'Admin_html/Add_product.htm', {'form': Productform})
+    else:
+        Productform = ProductCreateForm()
+        return render(request, 'Admin_html/Add_product.htm', {'form': Productform})
+
+
+def Delete_Product(request, id):
+    pass
