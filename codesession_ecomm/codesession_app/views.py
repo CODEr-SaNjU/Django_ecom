@@ -5,7 +5,7 @@ from django.contrib import auth, messages
 from .models import Product, ProductType
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import User, auth, Group
-# Create your views here.
+from .forms import ProductCreateForm
 
 
 @login_required(login_url='login')
@@ -36,7 +36,17 @@ def Login(request):
 
 
 def Add_Product(request):
-    return render(request, 'Admin_html/Add_product.htm')
+    if request.method == "POST":
+        Productform = ProductCreateForm(data=request.POST)
+        if Productform.is_valid():
+            product = Productform.save(commit=False)
+            product.save()
+            return redirect('dashboard')
+        Productform = ProductCreateForm()
+        return render(request, 'Admin_html/Add_product.htm', {'form': Productform})
+    else:
+        Productform = ProductCreateForm()
+        return render(request, 'Admin_html/Add_product.htm', {'form': Productform})
 
 
 def Add_ProductType(request):

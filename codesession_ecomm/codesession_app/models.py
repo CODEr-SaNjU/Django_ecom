@@ -14,6 +14,7 @@ class Product(models.Model):
     Product_Name = models.CharField(max_length=100, blank=False)
     Product_Type = models.ForeignKey(ProductType, on_delete=models.CASCADE)
     Product_Price = models.CharField(max_length=10, blank=False, null=False)
+    Product_image = models.ImageField()
 
     def __str__(self):
         return self.Product_Name
