@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate
 from django.contrib import auth, messages
 from .models import Product, ProductType
 from django.contrib.auth.decorators import login_required, permission_required
-from django.contrib.auth.models import User, auth, Group
+from django.contrib.auth.models import (User, auth, Group)
 from .forms import ProductCreateForm
 
 
@@ -82,4 +82,8 @@ def Update_Product(request, id):
 
 
 def Delete_Product(request, id):
-    pass
+    obj = get_object_or_404(Product, id=id)
+    if request.method == "POST":
+        obj.delete()
+        return redirect('dashboard')
+    return render(request, 'Admin_html/product_delete.htm', {'obj': obj})

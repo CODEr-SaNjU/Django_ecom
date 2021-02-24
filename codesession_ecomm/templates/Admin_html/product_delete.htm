@@ -1,0 +1,18 @@
+{% extends "Admin_html/main.htm" %}
+
+{% block content %}
+
+<h1 class="text-info text-center " >
+    You want delete this Product 
+    <span class="text-danger">{{obj}}</span>
+</h1>
+<div class="text-center">
+    <form action="" method="POST">
+        {% csrf_token %}
+        <button type="submit" value="Submit" class="btn btn-info">Yes</button>
+    </form>
+    <a href="{% url 'dashboard' %}"><button type="button" value="cancel" class="btn btn-danger">No</button></a>
+</div>
+
+
+{% endblock%}

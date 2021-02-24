@@ -12,8 +12,8 @@
     <h1>welcome here user </h1>
     {% for i in AllProduct %}
         <p>product name :: {{i.Product_Name}}</p> <br>
-        {{i.Product_Type}} <br>
-        {{i.Product_Price}} <br>
+        <p>Product type :: {{i.Product_Type}}</p><br>
+        <p> Product price {{i.Product_Price}}</p> <br>
         <img src="{{ i.Product_image.url }}" alt="new image" srcset="" width="150px" height="120px">
         <hr>
     {% endfor %}
