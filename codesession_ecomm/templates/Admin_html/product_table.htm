@@ -8,6 +8,7 @@
             <th scope="col">Product Name</th>
             <th scope="col">Product Type</th>
             <th scope="col">Product Price</th>
+            <th scope="col">Product Create Time </th>
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -18,6 +19,7 @@
             <td>{{i.Product_Name}}</td>
             <td>{{i.Product_Type}}</td>
             <td>{{i.Product_Price}}</td>
+            <td>{{i.Product_create}}</td>
             <td>
                 <a href="{% url 'UpdateProduct' i.id %}"><button  class="btn btn-info">Edit</button></a>
                 <a href="{% url 'DeleteProduct' i.id %}"><button class="btn btn-danger">Delete</button></a>

@@ -6,11 +6,17 @@ from .models import Product, ProductType
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import (User, auth, Group)
 from .forms import ProductCreateForm
+import datetime
 
 
 @login_required(login_url='login')
 def Dashboard(request):
-    AllProduct = Product.objects.all()
+    # AllProduct = Product.objects.all()
+    # AllProduct = Product.objects.filter(model_field_name="value")
+    AllProduct = Product.objects.filter(
+        Product_create__lte=datetime.date.today())
+    print("linr number 18", datetime.date.today())
+    print(AllProduct.query)
     return render(request, "Admin_html/main.htm", {'AllProduct': AllProduct})
 
 
