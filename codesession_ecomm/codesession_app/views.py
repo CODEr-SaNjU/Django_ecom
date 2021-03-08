@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate
 from django.contrib import auth, messages
 from .models import Product, ProductType
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.models import (User, auth, Group)
 from .forms import ProductCreateForm
@@ -12,7 +13,9 @@ import datetime
 @login_required(login_url='login')
 def Dashboard(request):
     #varaible_name =  ModelName.objects.filter(**parameters)
-    AllProduct = Product.objects.filter(Product_Type=1)
+
+    AllProduct = Product.objects.filter(
+        Q(Product_Name__startswith='Running') & Q(Product_Name__startswith='Running'))
 
     # AllProduct = Product.objects.exclude(
     #     Product_create__year=2021)
