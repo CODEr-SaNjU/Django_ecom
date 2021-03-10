@@ -13,17 +13,19 @@ import datetime
 @login_required(login_url='login')
 def Dashboard(request):
     #varaible_name =  ModelName.objects.filter(**parameters)
+    AlProduct = Product.objects.filter(Product_create__day=1).update(
+        Product_Name='Everything is the same')
+
+    # AllProduct = Product.objects.filter(
+    #     Q(Product_Name__startswith='Running') & Q(Product_Name__startswith='Running'))
 
     AllProduct = Product.objects.filter(
-        Q(Product_Name__startswith='Running') & Q(Product_Name__startswith='Running'))
-
-    # AllProduct = Product.objects.exclude(
-    #     Product_create__year=2021)
+        Product_create__year=2021)
     # AllProduct = Product.objects.filter(model_field_name="value")
     # AllProduct = Product.objects.exclude(
     #     Product_create__lte=datetime.datetime.today())
     print("linr number 18", datetime.datetime.today() - datetime.timedelta(days=1))
-    print(AllProduct.query)
+    # print(AllProduct.query)
     return render(request, "Admin_html/main.htm", {'AllProduct': AllProduct})
 
 
